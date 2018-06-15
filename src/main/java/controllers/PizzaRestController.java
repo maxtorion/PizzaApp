@@ -1,17 +1,14 @@
 package controllers;
 
-import jpa.pizza.Pizza;
-import jpa.pizza.PizzaDAO;
-import jpa.pizza.PizzaRepository;
+import jpa.Pizza;
+import jpa.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/pizza")
-@EnableJpaRepositories(basePackages = "jpa.pizza")
+@EnableJpaRepositories(basePackages = "jpa")
 public class PizzaRestController {
 
 

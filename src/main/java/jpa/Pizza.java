@@ -1,4 +1,4 @@
-package jpa.pizza;
+package jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,26 +7,36 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(schema = "pizzaeriadatabse", name = "pizza")
+@Table(schema = "pizza_database", name = "pizza")
 public class Pizza implements Serializable {
 
     @Id
     @Column(name = "pizza_name")
     private String pizzaname;
 
-    @Column(name = "Price")
+    @Column(name = "Price",
+    nullable = false)
     private float price;
 
-    @Column(name = "Ingredients")
+    @Column(name = "Ingredients",
+    nullable = false)
     private String ingredients;
 
+    //na potrzeby jpa tylko i wyłącznie
     protected Pizza(){}
 
-    public Pizza(String Pizza_name, float price, String ingredients) {
-        this.pizzaname = Pizza_name;
+    public void setPizzaname(String pizzaname) {
+        this.pizzaname = pizzaname;
+    }
+
+    public void setPrice(float price) {
         this.price = price;
+    }
+
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
+
 
     public String getPizzaname() {
         return pizzaname;
@@ -38,6 +48,13 @@ public class Pizza implements Serializable {
 
     public String getIngredients() {
         return ingredients;
+    }
+
+    public Pizza(String Pizza_name, float price, String ingredients) {
+
+        this.pizzaname = Pizza_name;
+        this.price = price;
+        this.ingredients = ingredients;
     }
 
     @Override
