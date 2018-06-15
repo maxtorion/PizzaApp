@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Pizza</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../static/css/user.css" th:href="@{/css/user.css}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<script src="jquery.min.js"></script>
+<script src="jquery.miranda.min.js"></script>
+<script>
+    var listdata = [
+        {"number":"1","name":"Soprano", "price":"15zł","ingredients":"ser, pieczarki, oregano"}
+    ];
+
+   $("showPizza").click(function(){
+       /*
+       $.getJSON("http://localhost:8080/pizza/Hawajska", function(result){
+           $.each(result, function(i, field){
+               listdata.add(field);
+           });
+   });*/
+        // nie dziala to kurwa
+       listdata.push(   {"number":"2","name":"cos", "price":"112zł","ingredients":"ser, pieczarki, oregano"}  );
+
+    });
+
+
+   $("pizzadata").mirandajs(listdata);
+</script>
+
+
+<div id="header"><h1>Order Pizza:</h1></div>
+<div id="datauser"><p th:text="'login: ' + ${user.login}" />
+    <p th:text="'Password: ' + ${user.password}" /></div>
+
+<div id="container">
+    <div id="choosePizza">
+        <h3>Wybierz pizze: </h3>
+        <p> <button id="showPizza" >Pokaż listę pizz </button></p>
+
+        <div id="pizzaTableContainer" class="w3-table w3-bordered w3-striped">
+            <table class ="pizzaTable">
+                <thead>
+                <tr class="w3-green">
+                    <th>Numer</th>
+                    <th>Nazwa pizzy</th>
+                    <th>Składniki</th>
+                    <th>Cena</th>
+                    <th>Ilość</th>
+                </tr>
+
+                </thead>
+                <tbody id="pizzaData">
+                    <tr>
+                        <td>[[number]]</td>
+                        <td>[[name]]</td>
+                        <td>[[price]]</td>
+                        <td>[[ingredients]]</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+    <div id="typeAddress">
+        <h3>Podaj adres:</h3>
+        <div id="addressAttributeDiv">
+            <p> Ulica:</p>
+            <p>Nr domu/mieszkania: </p>
+            <p>Osiedle: </p>
+            <p>Miasto: </p>
+        </div>
+        <div id="addressBoxDiv">
+            <input type="text" name="addressBox" >
+            <input type="text" name="houseNrBox">
+            <input type="text" name="regionBox">
+            <input type="text" name="cityBox">
+        </div>
+    </div>
+    <div id="payment">
+        <h3>Sposób płatności: </h3>
+        <p> <input type="radio" name="paymentType" CHECKED> Z góry(Karta, szybki przelew) </p>
+        <p> <input type="radio" name="paymentType" > Przy odbiorze(gotówka) </p>
+    </div>
+    <div id="price">
+        Łączny koszt: <label name="priceLabel" id="priceLabel">XX</label>  zł
+    </div>
+    <div id="orderButton">
+        <button type="submit" name="orderButton" >Zamawiam</button>
+    </div>
+
+
+</div>
+
+
+<div id="Footer"><a href="/start">Idz do panelu logowania</a></div>
+
+
+</body>
+</html>

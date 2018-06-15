@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:sf="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/loginPanel.css" th:href="@{/css/loginPanel.css}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<div id="login_register" >
+
+    <div id="login">
+
+
+            <div class="headerDiv">
+                <h1>LOGIN</h1>
+            </div>
+      <!--      <div class="hiddenLabel" id="incorrect_login_label_in_login">
+                <p style="color: #f50000">Incorrect login or password</p>
+            </div>
+            <div class="hiddenLabel" id="disabled_account_label">
+                <p style="color: #f50000">Your account is disabled</p>
+            </div> -->
+            <div class="attributeDiv">
+                <p>Login:</p>
+                <p>Password: </p>
+            </div>
+        <form  action="#" th:action="@{/start}" th:object="${user}" method="post" >
+            <div class="textBoxDiv">
+                <input type=text id="loginBox" name="loginBox" th:field="*{login}" />
+                <input type=password id="Password" name="passwordBox" th:field="*{password}" />
+            </div>
+
+            <div class="buttons">
+                <button id="loginButton" type=submit name="loginParam" th:text="Login" />
+            </div>
+        </form>
+    </div>
+
+
+    <div id="register">
+        <div class="headerDiv">
+            <h1>REGISTER</h1>
+        </div>
+     <!--   <div class="hiddenLabel" id="pass_login_exists_label">
+            <p style="color: #f50000">User already exists</p>
+        </div>
+        <div class="hiddenLabel" id="created_account_label">
+            <p style="color: #004d0b">Account has been successfully created</p>
+        </div> -->
+
+        <div class="attributeDiv">
+            <p>Login:</p>
+            <p>Email:</p>
+            <p>Phone number:</p>
+            <p>Password:</p>
+            <p>Confirm password:</p>
+        </div>
+        <form  action="#" th:action="@{/start}"  method="post" >
+        <div class="textBoxDiv">
+            <input type=text name="loginBox_r" />
+            <input type=text name="emailBox" />
+            <input type=text name="phoneBox" />
+            <input type=password  name="passwordBox_r" />
+            <input type=password  name="confirmPasswordBox" />
+        </div>
+
+
+        <div class="buttons">
+            <button type=submit id="registerButton" name="registerParam" th:text="Register"  />
+        </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

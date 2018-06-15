@@ -1,0 +1,73 @@
+body{
+    background-color: #f0f4fa;
+}
+
+#header{
+    margin-top: 10px;
+    text-align: center;
+    width: 1300px;
+    position: absolute;
+    float: left;
+}
+#datauser {
+    margin-left: 20px;
+    position: absolute;
+    margin-top: 30px;
+    float: left;
+    line-height: 0.8;
+}
+#container{
+    float: left;
+    margin-left: 300px;
+    margin-top: 50px;
+    width: 1000px;
+    position: absolute;
+}
+#choosePizza{
+    margin-top: 10px;
+    float: left;
+    width: 800px;
+}
+#typeAddress{
+    float: left;
+    width: 800px;
+}
+#addressAttributeDiv{
+    float: left;
+    width: 200px;
+    margin-top: -5px;
+}
+#addressAttributeDiv p {
+    margin: 12px;
+}
+#addressBoxDiv{
+    margin-left: 50px;
+    float: left;
+    width: 200px;
+    line-height: 1.6;
+}
+#addressBoxDiv input {
+    margin-top:5px;
+}
+#payment{
+    float: left;
+    width: 800px;
+}
+#price{
+    float: left;
+    margin-left: 160px;
+}
+#orderButton{
+    float: left;
+    margin-left: 30px;
+}
+#Footer {
+    margin-top: 20px;
+    position: absolute;
+    float: left;
+    margin-left: 20px;
+}
+#priceLabel {
+    font-size: larger;
+}
+

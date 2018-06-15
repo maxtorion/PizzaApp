@@ -7,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -50,20 +54,28 @@ public class User implements Serializable {
     public void setId(Integer Id) { this.IdUser = Id; }
 
     @Column(name="Login", nullable = false, unique = true,length = 50)
+    @NotNull
+    @Size(min=4,max=20)
     private String Login;
     public String getLogin() { return Login; }
     public void setLogin(String login) { Login = login; }
 
+    @NotNull
+    @Size(min=4,max=20)
     @Column(name = "Password", nullable = false, length = 50)
     private String Password;
     public String getPassword() { return Password; }
     public void setPassword(String password) { Password = password;}
 
+    @Email
+    @NotBlank
     @Column(name = "Email", nullable = false, unique = true, length = 50)
     private String Email;
     public String getEmail() { return Email; }
     public void setEmail(String email) { Email = email; }
 
+    @NotNull
+    @Size(min=9,max=20)
     @Column(name = "Telefon", nullable = false,unique = true, length = 50)
     private String Telefon;
     public String getTelefon() { return Telefon; }
