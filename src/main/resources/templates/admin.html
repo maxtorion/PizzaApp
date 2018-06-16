@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Pizza</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../static/css/user.css" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<script>
+
+    $(function() {
+        $.getJSON('http://localhost:8080/userapi/allusers', function(data) {
+            $.each(data, function(i, f) {
+                var tblRow = "<tr>" + "<td>" + f.id + "</td>" +
+                    "<td>" + f.login + "</td>" +
+                    "<td>" + f.password + "</td>" +
+                    "<td>" + f.status + "</td>" +
+                    "<td>" + f.email + "</td>" +
+                    "<td>" + f.telefon + "</td>" +
+                    "<td>" + "<input type='text' name='passwordBox'> " + "<button type='submit' name='changeButton'>Change</button>" + "</td>"+
+                    "<td>" + "<button type='submit' name='enableButton' >Enable</button>" +"</td>" +
+                    "<td>" +  "<button type='submit' name='disableButton' >Disable</button>" +"</td>" +
+                    "</tr>"
+                $(tblRow).appendTo("#userData tbody");
+            });
+        });
+    });
+</script>
+<script>
+
+    $(function() {
+        $.getJSON('http://localhost:8080/orderapi/allorders', function(data) {
+            $.each(data, function(i, f) {
+                var tblRow = "<tr>" + "<td>" + f.orderyID + "</td>" +
+                    "<td>" + f.user_id + "</td>" +
+                    "<td>" + f.date + "</td>" +
+                    "<td>" + f.street + "</td>" +
+                    "<td>" + f.apartment_number + "</td>" +
+                    "<td>" + f.region + "</td>" +
+                    "<td>" + f.city + "</td>" +
+                    "<td>" + f.sum + "</td>" +
+                    "<td>"  + "</td>" +
+                    "<td>" +  "<button type='submit' name='deleteButton' >DELETE</button>" +"</td>" +
+                    "</tr>"
+                $(tblRow).appendTo("#orderData tbody");
+            });
+        });
+    });
+
+</script>
+
+<div id="container">
+    <div id="title">
+        <div id="back">
+            <a href="/start">Idz do panelu logowania</a>
+        </div>
+        <h1>ADMIN PANEL</h1>
+    </div>
+
+    <div id="containerList">
+        <h2>Lista użytkowników: </h2>
+        <div class="w3-table w3-bordered w3-striped" id="userList">
+            <table id="userData">
+                <thead>
+                <tr class="w3-blue">
+                    <th>Id</th>
+                    <th>Login</th>
+                    <th>Hasło</th>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Zmiana hasła</th>
+                    <th>Enable</th>
+                    <th>Disable</th>
+                </tr>
+
+                </thead>
+                <tbody id="userBodyData" class="w3-white">
+
+                </tbody>
+            </table>
+
+        </div>
+        <div class="w3-table w3-bordered w3-striped" id="orderList">
+            <h2>Zamówienia: </h2>
+            <table id="orderData">
+                <thead>
+                <tr class="w3-green">
+                    <th>Id</th>
+                    <th>Id użytkownika</th>
+                    <th>Data</th>
+                    <th>Ulica</th>
+                    <th>Nr domu/mieszkania</th>
+                    <th>Osiedle</th>
+                    <th>Miasto</th>
+                    <th>Łączny koszt</th>
+                    <th>Rodzaj płatności</th>
+                    <th>Usuń</th>
+                </tr>
+
+                </thead>
+                <tbody id="orderBodyData" class="w3-white">
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+</body>
+</html>

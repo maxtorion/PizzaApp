@@ -32,7 +32,13 @@
             var rowLenght = table.rows.length;
             for (var i = 0; i < rowLenght; i++) {
                 var cells = table.rows.item(i).cells;
-                price += parseFloat(cells.item(2).innerText) * parseInt(cells.item(3).getElementsByTagName("input")[0].value);
+                var priceTd = cells.item(2).innerText;
+                var quantity = cells.item(3).getElementsByTagName("input")[0].value;
+                // w przypadku pustych pol
+                if(priceTd == "") priceTd = 0.0;
+                if(quantity == "") quantity = 0;
+                price += parseFloat(priceTd) * parseInt(quantity);
+                //nie dziala cos to  - do 2 miejsc po przecinku
                 price.toFixed(2);
                 document.getElementById("priceLabel").innerText = price.toString();
 
@@ -63,7 +69,7 @@
                 </tr>
 
                 </thead>
-                <tbody id="pizzaBodyData">
+                <tbody id="pizzaBodyData" class="w3-white">
 
                 </tbody>
             </table>

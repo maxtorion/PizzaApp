@@ -1,5 +1,6 @@
 body{
     background-color: #f0f4fa;
+
 }
 
 #header{
@@ -21,6 +22,7 @@ body{
     margin-left: 300px;
     margin-top: 50px;
     width: 1000px;
+    height: 800px;
     position: absolute;
 }
 #choosePizza{
@@ -51,15 +53,19 @@ body{
 }
 #payment{
     float: left;
-    width: 800px;
+    height: 200px;
+
+
 }
 #price{
     float: left;
     margin-left: 160px;
+    margin-top: 50px;
 }
 #orderButton{
     float: left;
     margin-left: 30px;
+    margin-top: 50px;
 }
 #Footer {
     margin-top: 20px;
