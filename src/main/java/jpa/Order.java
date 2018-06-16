@@ -1,13 +1,16 @@
 package jpa;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(schema = "pizza_database", name = "pizza_ord")
@@ -60,7 +63,7 @@ public class Order implements Serializable {
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",updatable = false,insertable = false)
-    @JsonIgnore
+    @JsonManagedReference
     private User user;
 
     public User GetUser_id() {
@@ -149,6 +152,19 @@ public class Order implements Serializable {
     public void setCity(String city) {
         City = city;
     }
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "pk.order",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Set<OrderedPizza> orderedPizzas = new HashSet<>();
+
+    public Set<OrderedPizza> getOrderedPizzas() {
+        return orderedPizzas;
+    }
+
+    public void setOrderedPizzas(Set<OrderedPizza> orderedPizzas) {
+        this.orderedPizzas = orderedPizzas;
+    }
+
 
     @Override
     public String toString() {
