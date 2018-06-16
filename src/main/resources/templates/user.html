@@ -7,27 +7,41 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-<script src="jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 <script src="jquery.miranda.min.js"></script>
 <script>
-    var listdata = [
-        {"number":"1","name":"Soprano", "price":"15zł","ingredients":"ser, pieczarki, oregano"}
-    ];
 
-   $("showPizza").click(function(){
-       /*
-       $.getJSON("http://localhost:8080/pizza/Hawajska", function(result){
-           $.each(result, function(i, field){
-               listdata.add(field);
-           });
-   });*/
-        // nie dziala to kurwa
-       listdata.push(   {"number":"2","name":"cos", "price":"112zł","ingredients":"ser, pieczarki, oregano"}  );
-
+    $(function() {
+        $.getJSON('http://localhost:8080/pizza/allpizza', function(data) {
+            $.each(data, function(i, f) {
+                var tblRow = "<tr>" + "<td>" + f.pizzaname + "</td>" +
+                    "<td>" + f.ingredients + "</td>" + "<td>" + f.price + "</td>" + "<td>" + "<input type='text' name='quantity' onchange='setPrice()' value='0'>" +"</td>" + "</tr>"
+                $(tblRow).appendTo("#pizzaData tbody");
+            });
+        });
     });
 
+</script>
+<script>
+    function setPrice() {
+        var table = document.getElementById("pizzaBodyData");
+        //  var rows = document.getElementsByTagName("tbody")[0].rows;
 
-   $("pizzadata").mirandajs(listdata);
+        var price = 0.0;
+        if (table.rows.length != null) {
+            var rowLenght = table.rows.length;
+            for (var i = 0; i < rowLenght; i++) {
+                var cells = table.rows.item(i).cells;
+                price += parseFloat(cells.item(2).innerText) * parseInt(cells.item(3).getElementsByTagName("input")[0].value);
+                price.toFixed(2);
+                document.getElementById("priceLabel").innerText = price.toString();
+
+            }
+
+
+        }
+    }
+
 </script>
 
 
@@ -38,13 +52,10 @@
 <div id="container">
     <div id="choosePizza">
         <h3>Wybierz pizze: </h3>
-        <p> <button id="showPizza" >Pokaż listę pizz </button></p>
-
         <div id="pizzaTableContainer" class="w3-table w3-bordered w3-striped">
-            <table class ="pizzaTable">
+            <table id="pizzaData">
                 <thead>
                 <tr class="w3-green">
-                    <th>Numer</th>
                     <th>Nazwa pizzy</th>
                     <th>Składniki</th>
                     <th>Cena</th>
@@ -52,14 +63,8 @@
                 </tr>
 
                 </thead>
-                <tbody id="pizzaData">
-                    <tr>
-                        <td>[[number]]</td>
-                        <td>[[name]]</td>
-                        <td>[[price]]</td>
-                        <td>[[ingredients]]</td>
-                        <td>0</td>
-                    </tr>
+                <tbody id="pizzaBodyData">
+
                 </tbody>
             </table>
 
@@ -88,7 +93,7 @@
         <p> <input type="radio" name="paymentType" > Przy odbiorze(gotówka) </p>
     </div>
     <div id="price">
-        Łączny koszt: <label name="priceLabel" id="priceLabel">XX</label>  zł
+        Łączny koszt: <label name="priceLabel" id="priceLabel"></label>  zł
     </div>
     <div id="orderButton">
         <button type="submit" name="orderButton" >Zamawiam</button>

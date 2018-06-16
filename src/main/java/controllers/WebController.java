@@ -23,6 +23,8 @@ public class WebController {
             //TODO sprawdzenie czy user jest w bazie
 
 
+            //TODO sprawdzenie czy to admin czy user
+
             return "user";
         }
         else return "start";
