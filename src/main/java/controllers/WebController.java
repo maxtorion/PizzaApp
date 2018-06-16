@@ -19,15 +19,20 @@ public class WebController {
 
     @PostMapping(path="/start" , params="loginParam")
     public String goToUser(@ModelAttribute User user){
-        if(user.getLogin() != null && user.getPassword() != null) {
+        if(user.getLogin() != "" && user.getPassword() != "") {
             //TODO sprawdzenie czy user jest w bazie
 
 
-            //TODO sprawdzenie czy to admin czy user
+            //TODO sprawdzenie czy to admin czy user (JEZELI USER - czy jest ENABLE)
 
             return "user";
         }
         else return "start";
+    }
+    //tymczasowe wejscie na panel admina
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
     }
 
 

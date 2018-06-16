@@ -1,0 +1,35 @@
+body {
+    background-color: #f0f4fa;
+}
+
+#container {
+    float: left;
+    margin-top: 30px;
+    width: 1200px;
+    height: 800px;
+    position: absolute;
+}
+#back {
+    margin-left: 20px;
+    position: absolute;
+    margin-top: 30px;
+    float: left;
+
+}
+#title {
+    text-align: center;
+    width: 1300px;
+    position: absolute;
+    float: left;
+    margin-left: 25px;
+    border-bottom: 1px solid #02082e ;
+}
+#containerList {
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+
+}
+#orderList{
+    margin-top: 10px;
+}
