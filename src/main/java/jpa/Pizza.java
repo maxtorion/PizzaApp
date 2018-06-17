@@ -1,17 +1,19 @@
 package jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(schema = "pizza_database", name = "pizza")
 public class Pizza implements Serializable {
 
     @Id
-    @Column(name = "pizza_name")
+    @Column(name = "pizza_name",length = 150)
     private String pizzaname;
 
     @Column(name = "Price",
@@ -19,8 +21,22 @@ public class Pizza implements Serializable {
     private float price;
 
     @Column(name = "Ingredients",
-    nullable = false)
+    nullable = false,length = 155)
     private String ingredients;
+
+
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.pizza",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Set<OrderedPizza> orderedPizzas = new HashSet<>();
+
+    public Set<OrderedPizza> getOrderedPizzas() {
+        return orderedPizzas;
+    }
+
+    public void setOrderedPizzas(Set<OrderedPizza> orderedPizzas) {
+        this.orderedPizzas = orderedPizzas;
+    }
+
 
     //na potrzeby jpa tylko i wyłącznie
     protected Pizza(){}

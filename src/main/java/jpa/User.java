@@ -1,6 +1,7 @@
 package jpa;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.ColumnDefault;
@@ -141,6 +142,7 @@ public class User implements Serializable {
 
 
     @OneToMany(targetEntity = Order.class, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<Order> orders = new HashSet<>();
 
     public Set<Order> getOrders() {
