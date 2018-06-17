@@ -7,7 +7,30 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    /*
+    $('#passwordBox_r, #confirmPasswordBox').on('keyup', function () {
+        if ($('#passwordBox_r').val() == $('#confirmPasswordBox').val()) {
+            $('#message').html('Matching').css('color', 'green');
+        } else
+            $('#message').html('Not Matching').css('color', 'red');
+    }); */
 
+    function check_pass() {
+        if (document.getElementById('passwordBox_r').value ==
+            document.getElementById('confirmPasswordBox').value) {
+            document.getElementById('registerButton').disabled = false;
+        } else {
+            document.getElementById('registerButton').disabled = true;
+        }
+    }
+</script>
+
+<script>
+    var $adduser = $('#getDataUser').serialize();
+   // console.log($("#textBoxDiv").serialize());
+</script>
 <div id="login_register" >
 
     <div id="login">
@@ -28,8 +51,9 @@
             </div>
         <form  action="#" th:action="@{/start}" th:object="${user}" method="post" >
             <div class="textBoxDiv">
-                <input type=text id="loginBox" name="loginBox" th:field="*{login}" />
-                <input type=password id="Password" name="passwordBox" th:field="*{password}" />
+                <input type=text id="loginBox" name="loginBox" th:field="*{login}" required />
+                <input type=password id="Password" name="passwordBox" th:field="*{password}"  required/>
+
             </div>
 
             <div class="buttons">
@@ -57,13 +81,15 @@
             <p>Password:</p>
             <p>Confirm password:</p>
         </div>
-        <form  action="#" th:action="@{/start}"  method="post" >
+        <form  action="#" th:action="@{/userapi/user}"  method="post" >
         <div class="textBoxDiv">
-            <input type=text name="loginBox_r" />
-            <input type=text name="emailBox" />
-            <input type=text name="phoneBox" />
-            <input type=password  name="passwordBox_r" />
-            <input type=password  name="confirmPasswordBox" />
+            <form id="getDataUser">
+            <input type=text name="userID"  required/>
+            <input type=text name="emailBox" required/>
+            <input type=text name="phoneBox" required/>
+            <input type=password  name="passwordBox_r" id="passwordBox_r" onchange='check_pass();' required/>
+            </form>
+            <input type=password  name="confirmPasswordBox" id="confirmPasswordBox" onchange='check_pass();' required/>
         </div>
 
 
@@ -71,7 +97,9 @@
             <button type=submit id="registerButton" name="registerParam" th:text="Register"  />
         </div>
         </form>
+
     </div>
+
 </div>
 
 </body>

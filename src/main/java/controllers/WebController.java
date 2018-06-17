@@ -29,6 +29,9 @@ public class WebController {
         }
         else return "start";
     }
+
+
+
     //tymczasowe wejscie na panel admina
     @GetMapping("/admin")
     public String admin() {

@@ -43,7 +43,7 @@ body{
 }
 .textBoxDiv {
     float: left;
-    width: 150px;
+    width: 250px;
     margin-left: 5px;
     line-height: 1.8;
     margin-top: 10px;
@@ -60,4 +60,10 @@ body{
 }
 #registerButton {
     margin-left: 95px;
+}
+#messageDiv {
+   position: relative;
+    float: left;
+
+
 }
