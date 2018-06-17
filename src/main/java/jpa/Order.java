@@ -63,7 +63,7 @@ public class Order implements Serializable {
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",updatable = false,insertable = false)
-    @JsonManagedReference
+    @JsonIgnore
     private User user;
 
     public User GetUser_id() {
@@ -153,7 +153,7 @@ public class Order implements Serializable {
         City = city;
     }
 
-    @JsonBackReference
+ //   @JsonBackReference
     @OneToMany(mappedBy = "pk.order",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<OrderedPizza> orderedPizzas = new HashSet<>();
 

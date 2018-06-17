@@ -19,7 +19,8 @@ public class OrderedPizzaKey implements Serializable {
         this.pizza = pizza;
     }
 
-    @JsonManagedReference
+    @JsonIgnore
+    //@JsonManagedReference
     @ManyToOne
     private Order order;
 
@@ -30,6 +31,7 @@ public class OrderedPizzaKey implements Serializable {
     public void setOrder(Order order) {
         this.order = order;
     }
+
 
     @JsonManagedReference
     @ManyToOne

@@ -25,7 +25,8 @@ public class Pizza implements Serializable {
     private String ingredients;
 
 
-    @JsonBackReference
+ //  @JsonBackReference
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.pizza",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Set<OrderedPizza> orderedPizzas = new HashSet<>();
 
