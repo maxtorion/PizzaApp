@@ -9,14 +9,6 @@
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-    /*
-    $('#passwordBox_r, #confirmPasswordBox').on('keyup', function () {
-        if ($('#passwordBox_r').val() == $('#confirmPasswordBox').val()) {
-            $('#message').html('Matching').css('color', 'green');
-        } else
-            $('#message').html('Not Matching').css('color', 'red');
-    }); */
-
     function check_pass() {
         if (document.getElementById('passwordBox_r').value ==
             document.getElementById('confirmPasswordBox').value) {
@@ -28,8 +20,42 @@
 </script>
 
 <script>
-    var $adduser = $('#getDataUser').serialize();
-   // console.log($("#textBoxDiv").serialize());
+    function make_json(){
+        var form =  document.getElementById('postRegister');
+        var json={
+            "password":form.confirmPasswordBox.value,
+            "telefon":form.phoneBox.value,
+            "login":form.userID.value,
+            "email":form.emailBox.value
+        }
+        json = JSON.stringify(json);
+     //   document.getElementById('output').innerHTML = html;
+        return json;
+    }
+</script>
+<script>
+    function searchText() {
+        var search = make_json();
+        console.log(search);
+        $.ajax({
+            headers: {
+                Accept : "application/json",
+                "Content-Type": "application/json"
+            },
+            type: "POST",
+            //contentType: 'application/json',
+            dataType: 'json',
+            url: "/userapi/user",
+            data: search,
+            success: function (result) {
+                console.log(search);
+            },
+            error: function(){
+                console.log("fail")
+            }
+        });
+
+    }
 </script>
 <div id="login_register" >
 
@@ -49,7 +75,7 @@
                 <p>Login:</p>
                 <p>Password: </p>
             </div>
-        <form  action="#" th:action="@{/start}" th:object="${user}" method="post" >
+        <form  action="#" th:action="@{/start}" th:object="${user}" method="post" enctype="application/">
             <div class="textBoxDiv">
                 <input type=text id="loginBox" name="loginBox" th:field="*{login}" required />
                 <input type=password id="Password" name="passwordBox" th:field="*{password}"  required/>
@@ -81,20 +107,17 @@
             <p>Password:</p>
             <p>Confirm password:</p>
         </div>
-        <form  action="#" th:action="@{/userapi/user}"  method="post" >
+        <form onsubmit="searchText();" id="postRegister" method="post"  >
         <div class="textBoxDiv">
-            <form id="getDataUser">
             <input type=text name="userID"  required/>
             <input type=text name="emailBox" required/>
             <input type=text name="phoneBox" required/>
             <input type=password  name="passwordBox_r" id="passwordBox_r" onchange='check_pass();' required/>
-            </form>
             <input type=password  name="confirmPasswordBox" id="confirmPasswordBox" onchange='check_pass();' required/>
         </div>
-
-
         <div class="buttons">
-            <button type=submit id="registerButton" name="registerParam" th:text="Register"  />
+            <button type=submit id="registerButton" name="registerParam" th:text="Register"   />
+            <pre id="output" ></pre>
         </div>
         </form>
 

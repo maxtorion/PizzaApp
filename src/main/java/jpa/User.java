@@ -65,8 +65,6 @@ public class User implements Serializable {
     }
 
     @Column(name = "Login", nullable = false, unique = true, length = 50)
-    @NotNull
-    @Size(min = 4, max = 20)
     private String Login;
 
     public String getLogin() {
@@ -77,8 +75,7 @@ public class User implements Serializable {
         Login = login;
     }
 
-    @NotNull
-    @Size(min = 4, max = 20)
+
     @Column(name = "Password", nullable = false, length = 50)
     private String Password;
 
@@ -90,8 +87,7 @@ public class User implements Serializable {
         Password = password;
     }
 
-    @Email
-    @NotBlank
+
     @Column(name = "Email", nullable = false, unique = true, length = 50)
     private String Email;
 
@@ -103,8 +99,7 @@ public class User implements Serializable {
         Email = email;
     }
 
-    @NotNull
-    @Size(min = 9, max = 20)
+
     @Column(name = "Telefon", nullable = false, unique = true, length = 50)
     private String Telefon;
 
@@ -142,7 +137,8 @@ public class User implements Serializable {
 
 
     @OneToMany(targetEntity = Order.class, mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonBackReference
+   // @JsonBackReference
+    @JsonIgnore
     private Set<Order> orders = new HashSet<>();
 
     public Set<Order> getOrders() {

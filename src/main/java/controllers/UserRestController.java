@@ -35,7 +35,7 @@ public class UserRestController {
         return this.userRepository.getOne(userID);
     }
 
-    @PostMapping(value ="/user")
+    @PostMapping("/user")
     ResponseEntity<?> addUser(@RequestBody User user)
     {
         if( user.getId()!= null && this.userRepository.existsById(user.getId()))

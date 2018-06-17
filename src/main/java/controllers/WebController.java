@@ -38,6 +38,11 @@ public class WebController {
         return "admin";
     }
 
+    //test
+    @PostMapping(path="/start" , params="registerParam")
+    public String register(@ModelAttribute User user){
+        return "start";
+    }
 
 
 }
