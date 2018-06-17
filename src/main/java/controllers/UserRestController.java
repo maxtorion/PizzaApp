@@ -10,10 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/userapi")
-@EnableJpaRepositories(basePackages = "jpa")
+@EnableJpaRepositories(basePackageClasses = jpa.UserRepository.class)
 public class UserRestController {
 
     private UserRepository userRepository;
@@ -29,10 +30,16 @@ public class UserRestController {
         return this.userRepository.findAll();
     }
 
-    @GetMapping("/{userID}")
+    @GetMapping("/findbyid/{userID}")
     public User getUserByID(@PathVariable Integer userID)
     {
         return this.userRepository.getOne(userID);
+    }
+
+    @GetMapping("/findbylogin/{login}")
+    public Optional<User> getUserByLogin(@PathVariable String login)
+    {
+        return this.userRepository.findUserByLogin(login);
     }
 
     @PostMapping("/user")

@@ -1,20 +1,12 @@
 package jpa;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.joining;
@@ -45,7 +37,7 @@ public class User implements Serializable {
     }
 
     public User(String login, String password, String email, String telefon) {
-        Login = login;
+        this.login = login;
         Password = password;
         Email = email;
         Telefon = telefon;
@@ -64,15 +56,15 @@ public class User implements Serializable {
         this.IdUser = Id;
     }
 
-    @Column(name = "Login", nullable = false, unique = true, length = 50)
-    private String Login;
+    @Column(name = "login", nullable = false, unique = true, length = 50)
+    private String login;
 
     public String getLogin() {
-        return Login;
+        return login;
     }
 
     public void setLogin(String login) {
-        Login = login;
+        this.login = login;
     }
 
 
@@ -162,7 +154,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         // final String allOrders = this.orders.stream().map(order -> order.toString()).collect(joining("/"));
-        return String.format("User[userID=%d,Login=%s,Password=%s,Email=%s,Telefon=%s,Status=%s,Type=%s]"
-                , IdUser, Login, Password, Email, Telefon, Status, Type);
+        return String.format("User[userID=%d,login=%s,Password=%s,Email=%s,Telefon=%s,Status=%s,Type=%s]"
+                , IdUser, login, Password, Email, Telefon, Status, Type);
     }
 }
