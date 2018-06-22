@@ -128,7 +128,8 @@ public class User implements Serializable {
     }
 
 
-    @OneToMany(targetEntity = Order.class, mappedBy = "user", cascade = CascadeType.ALL)
+    //Eager tylko na potrzeby vaadin UI, tymczasowo
+    @OneToMany(targetEntity = Order.class, mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
    // @JsonBackReference
     @JsonIgnore
     private Set<Order> orders = new HashSet<>();

@@ -56,13 +56,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
         <!-- https://mvnrepository.com/artifact/com.vaadin/vaadin-spring-boot-starter -->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
-            <version>3.0.1</version>
         </dependency>
+
 		<!-- thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -80,6 +79,7 @@
             <artifactId>jquery</artifactId>
             <version>2.1.4</version>
         </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -89,6 +89,16 @@
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.vaadin/viritin -->
+        <dependency>
+            <groupId>org.vaadin</groupId>
+            <artifactId>viritin</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+
+
         <!--
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -98,16 +108,39 @@
             -->
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>8.4.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
+            <!-- https://mvnrepository.com/artifact/com.vaadin/vaadin-maven-plugin -->
+            <plugin>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-maven-plugin</artifactId>
+                <version>8.3.1</version>
+            </plugin>
+
+        </plugins>
 	</build>
 
 	<repositories>
+        <repository>
+            <id>vaadin-add-ons</id>
+            <url>http://vaadin.com/nexus/content/repositories/vaadin-addons/</url>
+        </repository>
 		<repository>
 			<id>spring-releases</id>
 			<url>https://repo.spring.io/libs-release</url>

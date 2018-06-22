@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"controllers"})
+@ComponentScan(basePackages = {"controllers","vadinUI"})
 @EnableJpaRepositories(basePackages = {"jpa"})
 @EntityScan(basePackages ={"jpa"} )
 public class PizzaApplication {
