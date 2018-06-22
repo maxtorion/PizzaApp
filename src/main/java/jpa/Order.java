@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.context.annotation.Configuration;
 
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Entity
 @Table(schema = "pizza_database", name = "pizza_ord")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Configuration()
 public class Order implements Serializable {
 
     //dla jpa tylko i wyłącznie
